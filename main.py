@@ -31,6 +31,12 @@ class BaseHandler(tornado.web.RequestHandler):
         return "/login"
 
     def render_string(self, template_name, **kwargs):
+        if 'message' not in kwargs:
+            kwargs['message'] = ''
+
+        if 'error_messages' not in kwargs:
+            kwargs['error_messages'] = []
+
         return tornado.web.RequestHandler.render_string(
             self, template_name, **kwargs)
 
