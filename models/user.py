@@ -25,6 +25,9 @@ class User(MongoDocument):
 
     use_dot_notation=True
     required_fields = ['username', 'password']
+    indexes = [
+        { 'fields':['username'], 'unique':True, }
+    ]
 
     def unanswered_questions(self):
         return Question.all({ 'user': self.username, 'answer': None })
