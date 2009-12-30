@@ -96,6 +96,9 @@ class RegisterHandler(BaseHandler):
         if password != confirm_password:
             messages.append("Passwords are not equal")
 
+        if len(password) < 6:
+            messages.append("Password length must be bigger than 6 chars")
+
         user = User.one({'username': username})
 
         if user:
