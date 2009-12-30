@@ -128,7 +128,8 @@ settings = {
     "template_path": os.path.join(os.path.dirname(__file__), "templates"),
     "static_path": os.path.join(os.path.dirname(__file__), "static"),
     "cookie_secret": "11oETzKXQAGaedkLxgEmEeJJ4uYh7EQnp2XdTP1o/Vo=",
-    "xsrf_cookies": True
+    "xsrf_cookies": True,
+    "debug": True
 }
 
 application = tornado.web.Application([
