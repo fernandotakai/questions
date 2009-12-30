@@ -14,6 +14,10 @@
             {{ current_user }} <a href="/logout">Logout</a>
             {% end %}
         </div>
+
+        {% if message %}
+            <div id="message">{{ message}}</div>
+        {% end%}
         
         {% block content %}{% end %}    
     </body>
