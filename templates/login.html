@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Login</h2>
+
+<form action="/login" method="post" accept-charset="utf-8">
+    <label for="username">User: <input type="text" name="username" value="" id="username"></label><br />
+    <label for="password">Password: <input type="password" name="password" value="" id="username"></label><br /> 
+    <p><input type="submit" value="Login"></p>
+    {{ xsrf_form_html() }}
+</form>
+
+<p>You don't have an account? <a href="/register">Register!</a></p>
+
+{% end %} 
