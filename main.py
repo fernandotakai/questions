@@ -75,6 +75,11 @@ class RegisterHandler(BaseHandler):
         if password != confirm_password:
             messages.append("Passwords are not equal")
 
+        user = User.one({'username': username})
+
+        if user:
+            messages.append('Username must be unique. %s is already take' % username)
+
         if len(messages) != 0:
             self.render("register.html", error_messages=messages)
             return
