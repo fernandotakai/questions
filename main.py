@@ -69,7 +69,7 @@ class LoginHandler(BaseHandler):
 
 class RegisterHandler(BaseHandler):
     def get(self):
-        self.render("register.html")
+        self.render("register.html", username="", first_name="", last_name="")
 
     def post(self):
         username = self.get_argument('username', None)
@@ -105,7 +105,7 @@ class RegisterHandler(BaseHandler):
             messages.append('Username must be unique. %s is already take' % username)
 
         if len(messages) != 0:
-            self.render("register.html", error_messages=messages)
+            self.render("register.html", error_messages=messages, username=username, first_name=first_name, last_name=last_name)
             return
 
         user = User()
