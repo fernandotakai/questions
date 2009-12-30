@@ -52,14 +52,17 @@ class LoginHandler(BaseHandler):
 
        if not username or not password:
            self.render("login.html", message="Username/Password is empty")
+           return
 
        user = User.one({'username': username})
 
        if not user:
            self.render("login.html", message="Invalid Username/Password")
+           return
 
        if not user.verify_password(password):
            self.render("login.html", message="Invalid Username/Password")
+           return
 
        self.set_secure_cookie("user", username)
        self.redirect("/")
