@@ -6,6 +6,8 @@ import tornado.web
 import tornado.httpserver
 import tornado
 
+from models import User, Question
+
 import os
 
 def require_login(method):
