@@ -18,11 +18,13 @@ class User(MongoDocument):
 
     structure = dict(
         username=unicode,
-        password=unicode
+        password=unicode,
+        first_name=unicode,
+        last_name=unicode
     )
 
     use_dot_notation=True
-    required_fields =  ['username', 'password']
+    required_fields = ['username', 'password']
 
     def unanswered_questions(self):
         return Question.all({ 'user': self.username, 'answer': None })
