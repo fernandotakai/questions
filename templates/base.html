@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <title>Questions!</title>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        <script src="/static/js/jquery.js" type="text/javascript" charset="utf-8"></script>
+        <link rel="stylesheet" href="/static/css/base.css" type="text/css" media="screen" charset="utf-8">
+        {% block head %}{% end %}
+    </head>
+    <body>
+        <div id="auth">
+            {% if current_user %}
+            {{ current_user }} <a href="/logout">Logout</a>
+            {% end %}
+        </div>
+        
+        {% block content %}{% end %}    
+    </body>
+</html>
+
