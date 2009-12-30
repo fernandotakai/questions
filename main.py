@@ -46,6 +46,24 @@ class LoginHandler(BaseHandler):
    def get(self):
        self.render("login.html")
 
+   def post(self):
+       username = self.get_argument('username', None)
+       password = self.get_argument('password', None)
+
+       if not username or not password:
+           self.render("login.html", message="Username/Password is empty")
+
+       user = User.one({'username': username})
+
+       if not user:
+           self.render("login.html", message="Invalid Username/Password")
+
+       if not user.verify_password(password):
+           self.render("login.html", message="Invalid Username/Password")
+
+       self.set_secure_cookie("user", username)
+       self.redirect("/")
+
 class RegisterHandler(BaseHandler):
     def get(self):
         self.render("register.html")
