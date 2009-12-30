@@ -92,7 +92,7 @@ class RegisterHandler(BaseHandler):
 
         user.save(validate=True)
 
-        self.render("index.html", message="Successfully created!")
+        self.redirect("/")
 
 class LogoutHandler(BaseHandler):
     def get(self):
