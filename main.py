@@ -46,6 +46,49 @@ class LoginHandler(BaseHandler):
    def get(self):
        self.render("login.html")
 
+class RegisterHandler(BaseHandler):
+    def get(self):
+        self.render("register.html")
+
+    def post(self):
+        username = self.get_argument('username', None)
+        password = self.get_argument('password', None)
+        confirm_password = self.get_argument('confirm_password', None)
+
+        first_name = self.get_argument('first_name', None)
+        last_name = self.get_argument('last_name', None)
+
+        messages = []
+
+        if not username:
+            messages.append("Username is empty")
+
+        if not password:
+            messages.append("Password is empty")
+
+        if not first_name:
+            messages.append("First name is empty")
+
+        if not last_name:
+            messages.append("Last name is empty")
+  
+        if password != confirm_password:
+            messages.append("Passwords are not equal")
+
+        if len(messages) != 0:
+            self.render("register.html", error_messages=messages)
+            return
+
+        user = User()
+        user.username = username
+        user.first_name = first_name
+        user.last_name = last_name
+        user.set_password(password)
+
+        user.save(validate=True)
+
+        self.render("index.html", message="Successfully created!")
+
 class LogoutHandler(BaseHandler):
     def get(self):
         self.clear_cookie("user")
@@ -59,12 +102,13 @@ settings = {
     "template_path": os.path.join(os.path.dirname(__file__), "templates"),
     "static_path": os.path.join(os.path.dirname(__file__), "static"),
     "cookie_secret": "11oETzKXQAGaedkLxgEmEeJJ4uYh7EQnp2XdTP1o/Vo=",
-    "xsrf_cookies": False
+    "xsrf_cookies": True
 }
 
 application = tornado.web.Application([
     (r"/login/?", LoginHandler),
     (r"/logout/?", LogoutHandler),
+    (r'/register/?', RegisterHandler),
     (r"/", HomeHandler)
 ], **settings)
         

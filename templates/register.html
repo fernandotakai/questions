@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Register</h2>
+
+<ul>
+{% for m in error_messages %}
+<li>{{ m }}</li>
+{% end %}
+</ul>
+
+<form action="" method="post" accept-charset="utf-8">
+    <label for="first_name">First Name: <input type="text" name="first_name" value="" id="first_name"></label><br /> 
+    <label for="last_name">Last Name: <input type="text" name="last_name" value="" id="last_name"></label><br /> 
+    <label for="username">User: <input type="text" name="username" value="" id="username"></label><br />
+    <label for="password">Password: <input type="password" name="password" value="" id="password"></label><br /> 
+    <label for="confirm_password">Confirm Password: <input type="password" name="confirm_password" value="" id="confirm_password"></label><br /> 
+    <p><input type="submit" value="Register"></p>
+    {{ xsrf_form_html() }}
+</form>
+{% end %} 
